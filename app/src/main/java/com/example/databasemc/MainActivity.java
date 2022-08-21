@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button add,view;
+    Button add,view,update,delete;
     Switch enroll;
     EditText n,r;
     StudentModel studentModel;
@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         add = (Button)findViewById(R.id.button2);
         view = (Button)findViewById(R.id.button);
+        update = (Button)findViewById(R.id.button3);
+        delete = (Button)findViewById(R.id.button4);
         enroll = (Switch)findViewById(R.id.switch1);
         n =(EditText) findViewById(R.id.name);
         r =(EditText) findViewById(R.id.name2);
@@ -54,6 +56,22 @@ public class MainActivity extends AppCompatActivity {
                 ArrayAdapter arrayAdapter = new ArrayAdapter<StudentModel>
                         (MainActivity.this, android.R.layout.simple_list_item_1,list);
                 listViewStudent.setAdapter(arrayAdapter);
+            }
+        });
+
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBhelper dbHelper = new DBhelper(MainActivity.this);
+                dbHelper.update(n.getText().toString(),r.getText().toString());
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DBhelper dbHelper = new DBhelper(MainActivity.this);
+                dbHelper.delete(n.getText().toString(),r.getText().toString());
             }
         });
     }

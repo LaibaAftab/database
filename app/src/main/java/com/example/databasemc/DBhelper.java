@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.EditText;
 
 import androidx.annotation.Nullable;
 
@@ -57,6 +58,18 @@ public class DBhelper extends SQLiteOpenHelper {
         //long insert =
         //if (insert == -1) { return false; }
         //else{return true;}
+    }
+
+    public boolean update(String s, String roll) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("UPDATE "+STUDENT_TABLE+" SET "+ STUDENT_NAME +"= "+"'"+s+"' "+ " WHERE "+ STUDENT_ROLL+" = "+"'"+roll+"'");
+        return true;
+    }
+
+    public boolean delete(String s, String roll) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("Delete FROM "+STUDENT_TABLE+" WHERE "+ STUDENT_NAME +"= "+"'"+s+"' "+ " AND "+ STUDENT_ROLL+" = "+"'"+roll+"'");
+        return true;
     }
 
     public ArrayList<StudentModel> getAllStudents() {
