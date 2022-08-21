@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     EditText n,r;
     StudentModel studentModel;
     ListView listViewStudent;
-    //hello my nameeeeee
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
