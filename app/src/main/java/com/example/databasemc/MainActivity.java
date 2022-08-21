@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     EditText n,r;
     StudentModel studentModel;
     ListView listViewStudent;
+    //hello my nameeeeee
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,16 +63,27 @@ public class MainActivity extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DBhelper dbHelper = new DBhelper(MainActivity.this);
-                dbHelper.update(n.getText().toString(),r.getText().toString());
+                try {
+                        DBhelper dbHelper = new DBhelper(MainActivity.this);
+                        dbHelper.update(n.getText().toString(), r.getText().toString());
+                    }
+                    catch(Exception e)
+                    {
+                        Toast.makeText(MainActivity.this, "No such record for update", Toast.LENGTH_SHORT).show();
+                    }
             }
         });
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                try{
                 DBhelper dbHelper = new DBhelper(MainActivity.this);
-                dbHelper.delete(n.getText().toString(),r.getText().toString());
+                dbHelper.delete(n.getText().toString(),r.getText().toString());}
+                catch (Exception e)
+                {
+                    Toast.makeText(MainActivity.this, "Cannot delete", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
